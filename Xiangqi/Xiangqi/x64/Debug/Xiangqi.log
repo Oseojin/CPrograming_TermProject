@@ -1,0 +1,5 @@
+﻿  main.c
+C:\CProject\CPrograming_TermProject\Xiangqi\Xiangqi\main.c(8,39): warning C4020: 'initBorad': 실제 매개 변수가 너무 많습니다.
+  xiangqi.c
+  코드를 생성하고 있습니다...
+  Xiangqi.vcxproj -> C:\CProject\CPrograming_TermProject\Xiangqi\x64\Debug\Xiangqi.exe
