@@ -1,5 +1,3 @@
-﻿  main.c
-C:\CProject\CPrograming_TermProject\Xiangqi\Xiangqi\main.c(8,39): warning C4020: 'initBorad': 실제 매개 변수가 너무 많습니다.
-  xiangqi.c
-  코드를 생성하고 있습니다...
+﻿  xiangqi.c
+C:\CProject\CPrograming_TermProject\Xiangqi\Xiangqi\xiangqi.c(186): warning C4715: 'playerInputKey': 모든 제어 경로에서 값을 반환하지는 않습니다.
   Xiangqi.vcxproj -> C:\CProject\CPrograming_TermProject\Xiangqi\x64\Debug\Xiangqi.exe

@@ -1,19 +1,22 @@
-#include <stdio.h>
 #include "xiangqi.h"
+
+Board xiangqiBoard;
+PointCurser player1, player2;
 
 int main(int argc, char* argv[])
 {
-	Board xiangqiBoard;
+	setlocale(LC_ALL, "KOREAN");
 
-	initBorad(xiangqiBoard.graphicBoard, G_BOARDROW, G_BOARDCOL);
+	initGame(xiangqiBoard.graphicBoard, &player1, &player2);
 
-	for (int i = 0; i < G_BOARDROW; i++)
+	while (1)
 	{
-		for (int j = 0; j < G_BOARDCOL; j++)
+		char c = playerInputKey(&player1);
+		if (c == '\0')
 		{
-			printf("%c", xiangqiBoard.graphicBoard[i][j]);
+			continue;
 		}
-		printf("\n");
+		moveCurser(xiangqiBoard.graphicBoard, &player1, c);
 	}
 
 	return 0;
