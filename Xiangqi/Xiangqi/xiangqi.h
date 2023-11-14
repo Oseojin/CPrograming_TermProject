@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <locale.h>
 #include <conio.h>
+#include <Windows.h>
 
 // 그래픽 배열 행, 열 + 양쪽 여백 4칸씩 총 8칸
 #define G_BOARD_ROW (81)
@@ -25,35 +26,85 @@
 #define BOARD_ROW (10)
 #define BOARD_COL (9)
 
+// 장기말 개수
+#define PIECE_NUM (16)
+
 // 키 입력
 #define LEFT (75)
 #define RIGHT (77)
 #define UP (72)
 #define DOWN (80)
 
+enum TeamType
+{
+	초 = 1,
+	한 = 2
+} TEAM;
+
+enum ColorType
+{
+	WHITE = 15,
+	BLUE = 9,
+	RED = 12
+} COLOR;
+
 typedef struct PointCurser
 {
 	int x, y;
-	// 색 집어넣어야 함
+	int colorNum;
 } PointCurser;
 
+typedef struct Piece
+{
+	// 말의 그래픽 크기
+	int width;
+	// 말의 종류
+	wchar_t pieceType;
+	// 말의 팀
+	int team;
+	// 말의 점수
+	float score;
+	// 말의 위치
+	int x, y;
+	// 이동 함수: 함수 포인터
+}Piece;
+
+typedef struct Player
+{
+	int teamID;
+	int score;
+	PointCurser curser;
+	Piece pieceSet[PIECE_NUM];
+}Player;
 
 typedef struct Board
 {
 	// 실제 화면에 나타날 장기판을 저장하는 배열
 	wchar_t graphicBoard[G_BOARD_ROW][G_BOARD_COL];
-	// 계산에 필요한 장기말의 위치를 저장하고 있는 배열
-	int piecesArr[BOARD_ROW][BOARD_COL];
 } Board;
 
-void initGame(wchar_t _board[G_BOARD_ROW][G_BOARD_COL], PointCurser *player1, PointCurser *player2);
-void initBoard(wchar_t _board[G_BOARD_ROW][G_BOARD_COL]);
-void drawBoard(wchar_t _board[G_BOARD_ROW][G_BOARD_COL]);
+void gotoxy(int x, int y);
 
-void initCurser(PointCurser* player1, PointCurser* player2);
-void moveCurser(wchar_t _board[G_BOARD_ROW][G_BOARD_COL], PointCurser* player, int moveDir);
+void initGame(Board* _board, Player* player1, Player* player2);
+void initBoard(Board* _board);
+void drawBoard(Board* _board);
 
-char playerInputKey(PointCurser* player);
+void initPlayer(Player* player, int _teamID);
+
+void initCurser(PointCurser* curser, int _colorNum);
+void moveCurser(Board* _board, Player* player, int moveDir);
+void drawCurser(int x, int y, int colorNum);
+void removeCurser(int x, int y);
+
+void initPiece(Piece* _piece, wchar_t _type, int _team, int _width, float _score, int _x, int _y);
+void initAllPiece(Piece _pieceSet[PIECE_NUM], int team);
+
+void drawPiece(Board* _board, Piece* _piece);
+void drawAllPiece(Board* _board, Piece _pieceSet[PIECE_NUM]);
+
+//Piece selectPiece(Board* _board, int x, int y);
+
+char playerInputKey();
 
 void printAlert(char alertText[]);
 
