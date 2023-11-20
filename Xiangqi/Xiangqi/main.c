@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "xiangqi.h"
 
 Board xiangqiBoard;
@@ -12,6 +14,7 @@ int main(int argc, char* argv[])
 	while (1)
 	{
 		char c = playerInputKey();
+
 		if (c == '\0')
 		{
 			continue;
